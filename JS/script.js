@@ -38,7 +38,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
+    //EvenListener para buscar
 
+    searchBtn.addEventListener("click", function() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredTasks = tasks.filter(function(task) {
+            return task.title.toLowerCase().includes(searchTerm);
+        });
+        renderTasks(filteredTasks);
+    });
 
 
 
