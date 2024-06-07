@@ -40,15 +40,24 @@ document.addEventListener("DOMContentLoaded", function() {
 
     //EvenListener para buscar
 
+
     searchBtn.addEventListener("click", function() {
         const searchTerm = searchInput.value.toLowerCase();
-        const filteredTasks = tasks.filter(function(task) {
-            return task.title.toLowerCase().includes(searchTerm);
-        });
-        renderTasks(filteredTasks);
+        if (searchTerm === "") {
+            renderTasks(); // display original task list when search input is cleared
+        } else {
+            const filteredTasks = tasks.filter(function(task) {
+                return task.title.toLowerCase().includes(searchTerm);
+            });
+            renderTasks(filteredTasks);
+        }
     });
 
-
+    searchInput.addEventListener("input", function() {
+        if (searchInput.value === "") {
+            renderTasks(); // display original task list when search input is cleared
+        }
+    });
 
     //Estructura para mostrar en la tabla
 
@@ -73,5 +82,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     renderTasks(); 
+
 
 });
