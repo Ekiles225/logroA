@@ -25,6 +25,18 @@ document.addEventListener("DOMContentLoaded", function() {
         addTaskForm.reset();
     });
 
+    //Estructura de evento clik para marcar como completado y eliminar
+    taskTable.addEventListener("click", function(event) {
+        if (event.target.tagName === "BUTTON") {
+            const taskId = event.target.dataset.taskId;
+            if (event.target.textContent === "Complete") {
+                tasks[taskId].status = "completed";
+            } else if (event.target.textContent === "Delete") {
+                tasks.splice(taskId, 1);
+            }
+            renderTasks();
+        }
+    });
 
 
 
@@ -46,5 +58,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    
 });
