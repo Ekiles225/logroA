@@ -50,20 +50,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+    //Estructura para mostrar en la tabla
 
 
+    function renderTasks(tasksToRender = tasks) {
+        taskList.innerHTML = "";
+        tasksToRender.forEach(function(task, index) {
+            const taskRow = document.createElement("tr");
+            taskRow.innerHTML = `
+                <td>${task.title}</td>
+                <td>${task.description}</td>
+                <td>${task.dueDate}</td>
+                <td>${task.priority}</td>
+                <td>${task.status}</td>
+                <td>
+                    <button data-task-id="${index}">Complete</button>
+                    <button data-task-id="${index}">Delete</button>
+                </td>
+            `;
+            taskList.appendChild(taskRow);
+        });
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    renderTasks(); 
 
 });
